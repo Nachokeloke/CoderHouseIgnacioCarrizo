@@ -59,7 +59,7 @@ namespace SistemaGestionData
             }
          }
 
-        public static List<ProductoVendido> GetProductoVendidos()
+        public static List<ProductoVendido> ListarProductosVendidos()
         {
             try
             {
@@ -131,35 +131,32 @@ namespace SistemaGestionData
             }
         }
 
-        public static void ModificarProductoVendido(int id, ProductoVendido productoVendidoModificado)
-
+        public static void ModificarProductoVendido(ProductoVendido productoVendidoModificado)
         {
             try
-
             {
                 using (var context = new SistemaGestionContext())
                 {
-                    var productoVendidoExistente = context.ProductosVendidos.FirstOrDefault(pv => pv.Id == id);
-                    if (productoVendidoExistente == null)
+                    var productoVendidoExistente = context.ProductosVendidos.FirstOrDefault(x => x.Id == productoVendidoModificado.Id);
+                    if (productoVendidoExistente != null)
                     {
-                        productoVendidoExistente.Id = productoVendidoExistente.Id;
-                        productoVendidoExistente.IdProducto = productoVendidoExistente.IdProducto;
-                        productoVendidoExistente.Stock = productoVendidoExistente.Stock;
-                        productoVendidoExistente.IdVenta = productoVendidoExistente.IdVenta;
+                        productoVendidoExistente.Id = productoVendidoModificado.Id;
+                        productoVendidoExistente.IdProducto = productoVendidoModificado.IdProducto;
+                        productoVendidoExistente.Stock = productoVendidoModificado.Stock;
+                        productoVendidoExistente.IdVenta = productoVendidoModificado.IdVenta;
 
                         context.SaveChanges();
                     }
                 }
-
             }
             catch (Exception ex)
-
             {
 
                 Console.WriteLine("Error al obtener el producto: " + ex.Message);
 
                 return;
             }
+
 
         }
 

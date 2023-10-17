@@ -12,7 +12,7 @@ namespace SistemaGestionBussiness
     public class ProductoBussiness
 
     {
-        public static List<Producto> ListarProductoss()
+        public static List<Producto> ListarProductos()
 
         { 
             return ProductoData.ListarProductos();
@@ -29,10 +29,10 @@ namespace SistemaGestionBussiness
             ProductoData.CrearProducto(producto);
         }
 
-        public static void ModificarProducto(int id, Producto productoModificado)
+        public static void ModificarProducto( Producto productoModificado)
 
         {
-            ProductoData.ModificarProducto(id, productoModificado);
+            ProductoData.ModificarProducto( productoModificado);
         }
 
         public static Producto ObtenerProducto(int id)

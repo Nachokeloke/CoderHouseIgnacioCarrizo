@@ -99,7 +99,7 @@ Console.WriteLine("Error al obtener el producto: "+ ex.Message);
 
         }
 
-        public static void ModificarUsuario(int id, Usuario usuarioModificado)
+        public static void ModificarUsuario( Usuario usuarioModificado)
         {
             try
 
@@ -111,7 +111,7 @@ Console.WriteLine("Error al obtener el producto: "+ ex.Message);
 
             {
 
-                var usuarioExistente = context.Usuarios.FirstOrDefault(us => us.Id == id);
+                var usuarioExistente = context.Usuarios.FirstOrDefault(us => us.Id == usuarioModificado.Id);
                 if (usuarioExistente != null)
                 {
                     usuarioExistente.Id = usuarioModificado.Id;

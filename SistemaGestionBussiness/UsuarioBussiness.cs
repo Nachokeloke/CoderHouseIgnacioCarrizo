@@ -25,10 +25,10 @@ namespace SistemaGestionBussiness
             UsuarioData.CrearUsuario(usuario);
         }
 
-        public static void ModificarUsuario(int id, string nuevoNombre, Usuario usuarioModificado)
+        public static void ModificarUsuario( Usuario usuarioModificado)
         {
 
-            UsuarioData.ModificarUsuario(id, usuarioModificado);
+            UsuarioData.ModificarUsuario( usuarioModificado);
         }
 
         public static Usuario ObtenerUsuario(int id)

@@ -101,36 +101,34 @@ namespace SistemaGestionData
                     
             }
         }
-            
 
-        public static void ModificarVentaData(int id, Venta ventaDataModificada)
+
+        public static void ModificarVentaData(Venta ventaDataModificada)
         {
-            try
-
-            { 
             using (var context = new SistemaGestionContext())
             {
-                var ventaDataExistente = context.Ventas.FirstOrDefault(v => v.id == id);
-                if (ventaDataExistente == null)
+                try
                 {
-                    ventaDataExistente.id = ventaDataModificada.id;
-                    ventaDataExistente.IdUsuario = ventaDataModificada.IdUsuario;
-                    ventaDataExistente.Comentarios = ventaDataModificada.Comentarios;
+                    var ventaDataExistente = (context.Ventas.FirstOrDefault(v => v.id == ventaDataModificada.id));
+                    if (ventaDataExistente != null)
+                    {
+                        ventaDataExistente.id = ventaDataModificada.id;
+                        ventaDataExistente.Comentarios = ventaDataModificada.Comentarios;
+                        ventaDataExistente.IdUsuario = ventaDataModificada.IdUsuario;
+                        context.SaveChanges();
+
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    Console.WriteLine("Error al obtener el producto: " + ex.Message);
+
+                    return;
                 }
             }
-
         }
-
-            catch (Exception ex) 
-            
-            { 
-                
-                Console.WriteLine("Error al obtener el producto: "+ ex.Message);
-                
-                return;
-            
-            }
     }
 }
-}
+
 
