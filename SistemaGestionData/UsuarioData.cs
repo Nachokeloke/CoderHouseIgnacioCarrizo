@@ -1,5 +1,7 @@
 ﻿using SistemaGestionEntities;
 using SistemaGestionBussiness;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Identity.Client;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +28,7 @@ namespace SistemaGestionData
             catch (Exception ex)
             {
             
-Console.WriteLine("Error al obtener el producto: "+ ex.Message);
+            Console.WriteLine("Error al obtener el producto: "+ ex.Message);
 
                 return null; 
             
@@ -99,6 +101,34 @@ Console.WriteLine("Error al obtener el producto: "+ ex.Message);
 
         }
 
+        public static bool Validarloguin(UsuarioLogin usuarioLogin)
+        {
+
+            try
+            {
+                using (var context = new SistemaGestionContext())
+                {
+                    var usuario = context.Usuarios.Where(x => x.NombreUsuario == usuarioLogin.NombreUsuario && x.Contraseña == usuarioLogin.Contraseña);
+                    if (usuario.Any())
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine("Error al obtener el producto: " + ex.Message);
+
+                return false;
+            }
+
+        }
+
         public static void ModificarUsuario( Usuario usuarioModificado)
         {
             try
@@ -136,7 +166,15 @@ Console.WriteLine("Error al obtener el producto: "+ ex.Message);
                 return;
             }
          }
-
     }
 }
+
+
+
+
+
+
+
+
+
 

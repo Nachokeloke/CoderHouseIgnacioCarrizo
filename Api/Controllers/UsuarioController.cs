@@ -43,5 +43,10 @@ namespace Api.Controllers
             UsuarioBussiness.CrearUsuario(usuario);
         }
 
+        [HttpPost, Route("Validarloguin")]
+        public bool Login(UsuarioLogin usuarioLogin)
+        {
+            return UsuarioBussiness.Validarloguin(usuarioLogin);
+        }
     }
 }

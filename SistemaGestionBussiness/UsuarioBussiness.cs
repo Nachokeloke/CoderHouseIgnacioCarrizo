@@ -36,5 +36,11 @@ namespace SistemaGestionBussiness
             return UsuarioData.ObtenerUsuario(id);
         }
 
+        public static bool Validarloguin (UsuarioLogin usuarioLogin)                     
+        {
+            return UsuarioData.Validarloguin (usuarioLogin);
+        }
+
+
     }
 }
